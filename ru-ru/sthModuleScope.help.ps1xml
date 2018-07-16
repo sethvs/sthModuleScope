@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems schema="maml">
+	<command:command 
+		xmlns:maml="http://schemas.microsoft.com/maml/2004/10" 
+		xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" 
+		xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" 
+		xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+		<command:details>
+			<command:name>Enter-sthModuleScope</command:name>
+			<command:verb>Enter</command:verb>
+			<command:noun>sthModuleScope</command:noun>
+			<maml:description>
+				<maml:para>Функция позволяет войти в область указанного модуля.</maml:para>
+			</maml:description>
+		</command:details>
+		<maml:description>
+			<maml:para>Функция Enter-sthModuleScope входит в область указанного модуля, позволяя выполнять команды в области этого модуля.
+Это дает возможность вызывать внутренние функции модуля и обращаться к неэкспортированным в рабочую среду переменным.
+Во время нахождения в области модуля, строка приглашения отображает имя этого модуля.
+Для выхода из области модуля используйте команду 'exit'.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<command:syntaxItem>
+				<maml:name>Enter-sthModuleScope</maml:name>
+				<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+					<maml:name>Module</maml:name>
+					<maml:Description>
+            <maml:para>Указывает имя модуля.</maml:para>
+            <maml:para>Это может быть как объект строки, так и объект System.Management.Automation.PSModuleInfo.
+Вы можете получить объект PSModuleInfo при помощи командлета Get-Module.</maml:para>
+          </maml:Description>
+					<command:parameterValue required="true" variableLength="false">System.Object</command:parameterValue>
+					<dev:type>
+						<maml:name>System.Object</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue>None</dev:defaultValue>
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Module</maml:name>
+        <maml:Description>
+					<maml:para>Указывает имя модуля.</maml:para>
+					<maml:para>Это может быть как объект строки, так и объект System.Management.Automation.PSModuleInfo.
+Вы можете получить объект PSModuleInfo при помощи командлета Get-Module.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">System.Object</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+		</command:parameters>
+		<command:examples>
+			<command:example>
+				<maml:title>Пример 1: Вход в область модуля</maml:title>
+				<dev:code>PS C:\> Enter-sthModuleScope -Module module_name
+[module_name] PS C:\>> exit
+PS C:\></dev:code>
+				<dev:remarks>
+					<maml:para>Эта команда входит в область модуля с именем 'module_name'.
+Во время нахождения в области модуля, строка приглашения отображает имя этого модуля.
+Для выхода из области модуля используется команда 'exit'.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 2: Вход в область модуля с использованием объекта PSModuleInfo</maml:title>
+				<dev:code>PS C:\> $Module = Get-Module -Name 'module_name' -ListAvailable
+PS C:\> Enter-sthModuleScope -Module $Module
+[module_name] PS C:\>> exit
+PS C:\></dev:code>
+				<dev:remarks>
+					<maml:para>Эти команды входят в область модуля, используя объект PSModuleInfo.
+Первая команда использует командлет Get-Module для получения объекта PSModuleInfo модуля с именем 'module_name'.
+Вторая команда входит в область модуля 'module_name'.
+Третья команда выходит из области модуля.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 3: Вход в область модуля с использованием конвейера</maml:title>
+				<dev:code>PS C:\> 'module_name' | Enter-sthModuleScope
+[module_name] PS C:\>></dev:code>
+				<dev:remarks>
+					<maml:para>Эта команда входит в область модуля, получая его имя посредством конвейера.</maml:para>
+          <maml:para/>
+          <maml:para/>
+        </dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 4: Вход в область модуля с использованием конвейера и объекта PSModuleInfo</maml:title>
+				<dev:code>PS C:\> Get-Module module_name -ListAvailable | Enter-sthModuleScope
+[module_name] PS C:\>></dev:code>
+				<dev:remarks>
+          <maml:para>Эта команда входит в область модуля, получая объект PSModuleInfo посредством конвейера.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<command:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthModuleScopeFunction</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthModuleScopeVariable</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthScopeDepth</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+		</command:relatedLinks>
+	</command:command>
+	<command:command 
+		xmlns:maml="http://schemas.microsoft.com/maml/2004/10" 
+		xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" 
+		xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" 
+		xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+		<command:details>
+			<command:name>Get-sthModuleScopeFunction</command:name>
+			<command:verb>Get</command:verb>
+			<command:noun>sthModuleScopeFunction</command:noun>
+			<maml:description>
+				<maml:para>Функция получает список всех функций, определенных в модуле.</maml:para>
+			</maml:description>
+		</command:details>
+		<maml:description>
+			<maml:para>Функция Get-sthModuleScopeFunction возвращает список всех функций модуля, указанного в качестве значения параметра -Module,
+или модуля, в область которого был совершен вход при помощи функции Enter-sthModuleScope.</maml:para>
+			<maml:para>По умолчанию, Get-sthModuleScopeFunction возвращает все функции - как публичные, так и частные,
+однако, вы можете указать нужный вам тип функций, используя параметры -PublicOnly и -PrivateOnly.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<command:syntaxItem>
+				<maml:name>Get-sthModuleScopeFunction</maml:name>
+				<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+					<maml:name>Module</maml:name>
+					<maml:Description>
+            <maml:para>Указывает имя модуля.</maml:para>
+            <maml:para>Это может быть как объект строки, так и объект System.Management.Automation.PSModuleInfo.
+Вы можете получить объект PSModuleInfo при помощи командлета Get-Module.</maml:para>
+          </maml:Description>
+					<command:parameterValue required="true" variableLength="false">System.Object</command:parameterValue>
+					<dev:type>
+						<maml:name>System.Object</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue>None</dev:defaultValue>
+				</command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PublicOnly</maml:name>
+          <maml:Description>
+            <maml:para>Указывает, что должны быть получены только публичные функции.</maml:para>
+            <maml:para>По умолчанию, Get-sthModuleScopeFunction возвращает все функции - как публичные, так и частные.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+			</command:syntaxItem>
+			<command:syntaxItem>
+        <maml:name>Get-sthModuleScopeFunction</maml:name>
+				<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+					<maml:name>Module</maml:name>
+					<maml:Description>
+            <maml:para>Указывает имя модуля.</maml:para>
+            <maml:para>Это может быть как объект строки, так и объект System.Management.Automation.PSModuleInfo.
+Вы можете получить объект PSModuleInfo при помощи командлета Get-Module.</maml:para>
+          </maml:Description>
+					<command:parameterValue required="true" variableLength="false">System.Object</command:parameterValue>
+					<dev:type>
+						<maml:name>System.Object</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue>None</dev:defaultValue>
+				</command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PrivateOnly</maml:name>
+          <maml:Description>
+            <maml:para>Указывает, что должны быть получены только частные функции.</maml:para>
+            <maml:para>По умолчанию, Get-sthModuleScopeFunction возвращает все функции - как публичные, так и частные.</maml:para>
+					</maml:Description>
+					<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+					<dev:type>
+						<maml:name>SwitchParameter</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue>False</dev:defaultValue>
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Module</maml:name>
+        <maml:Description>
+					<maml:para>Указывает имя модуля.</maml:para>
+					<maml:para>Это может быть как объект строки, так и объект System.Management.Automation.PSModuleInfo.
+Вы можете получить объект PSModuleInfo при помощи командлета Get-Module.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">System.Object</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PublicOnly</maml:name>
+        <maml:Description>
+					<maml:para>Указывает, что должны быть получены только публичные функции.</maml:para>
+					<maml:para>По умолчанию, Get-sthModuleScopeFunction возвращает все функции - как публичные, так и частные.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PrivateOnly</maml:name>
+        <maml:Description>
+					<maml:para>Указывает, что должны быть получены только частные функции.</maml:para>
+					<maml:para>По умолчанию, Get-sthModuleScopeFunction возвращает все функции - как публичные, так и частные.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+		</command:parameters>
+		<command:examples>
+			<command:example>
+				<maml:title>Пример 1: Вход в область модуля и получение всех его функций - публичных и частных</maml:title>
+				<dev:code>PS C:\> Enter-sthModuleScope -Module module_name
+[module_name] PS C:\>> Get-sthModuleScopeFunction</dev:code>
+				<dev:remarks>
+					<maml:para>Эти команды получают все функции, определенные в модуле 'module_name'.
+Первая команда входит в область модуля с именем 'module_name'.
+Вторая команда получает все функции модуля.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 2: Вход в область модуля и получение всех его публичных функций</maml:title>
+				<dev:code>PS C:\> Enter-sthModuleScope -Module module_name
+[module_name] PS C:\>> Get-sthModuleScopeFunction -PublicOnly</dev:code>
+				<dev:remarks>
+					<maml:para>Эти команды получают все публичные функции, определенные в модуле 'module_name'.
+Первая команда входит в область модуля с именем 'module_name'.
+Вторая команда получает все публичные функции модуля.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 3: Вход в область модуля и получение всех его частных функций</maml:title>
+				<dev:code>PS C:\> Enter-sthModuleScope -Module module_name
+[module_name] PS C:\>> Get-sthModuleScopeFunction -PrivateOnly</dev:code>
+				<dev:remarks>
+					<maml:para>Эти команды получают все частные функции, определенные в модуле 'module_name'.
+Первая команда входит в область модуля с именем 'module_name'.
+Вторая команда получает все частные функции модуля.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 4: Получение всех функций модуля с использованием параметра -Module</maml:title>
+				<dev:code>PS C:\> Get-sthModuleScopeFunction -Module 'module_name'</dev:code>
+				<dev:remarks>
+					<maml:para>Команда получает все функции, определенные в модуле 'module_name'.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 5: Получение всех функций модуля с использованием параметра -Module и объекта PSModuleInfo</maml:title>
+				<dev:code>PS C:\> $Module = Get-Module -Name 'module_info' -ListAvailable
+PS C:\> Get-sthModuleScopeFunction -Module $Module</dev:code>
+				<dev:remarks>
+					<maml:para>Команда получает все функции, определенные в модуле 'module_name', используя объект PSModuleInfo в качестве значения параметра -Module.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 6: Получение всех функций модуля с использованием конвейера</maml:title>
+				<dev:code>PS C:\> 'module_name' | Get-sthModuleScopeFunction</dev:code>
+				<dev:remarks>
+					<maml:para>Команда выводит все функции, определенные в модуле, получая его имя посредством конвейера.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 7: Получение всех функций модуля с использованием объекта PSModuleInfo и конвейера</maml:title>
+				<dev:code>PS C:\> Get-Module -Name 'module_name' -ListAvailable | Get-sthModuleScopeFunction</dev:code>
+				<dev:remarks>
+					<maml:para>Команда выводит все функции, определенные в модуле, получая объект PSModuleInfo посредством конвейера.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<command:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>Enter-sthModuleScope</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthModuleScopeVariable</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthScopeDepth</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+		</command:relatedLinks>
+	</command:command>
+	<command:command 
+		xmlns:maml="http://schemas.microsoft.com/maml/2004/10" 
+		xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" 
+		xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" 
+		xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+		<command:details>
+			<command:name>Get-sthModuleScopeVariable</command:name>
+			<command:verb>Get</command:verb>
+			<command:noun>sthModuleScopeVariable</command:noun>
+			<maml:description>
+				<maml:para>Функция получает список всех переменных, определенных в модуле.</maml:para>
+			</maml:description>
+		</command:details>
+		<maml:description>
+			<maml:para>Функция Get-sthModuleScopeVariable возвращает список всех переменных модуля, указанного в качестве значения параметра -Module,
+или модуля, в область которого был совершен вход при помощи функции Enter-sthModuleScope.</maml:para>
+			<maml:para>По умолчанию, Get-sthModuleScopeVariable возвращает все переменные - как публичные, так и частные,
+однако, вы можете указать нужный вам тип переменных, используя параметры -PublicOnly и -PrivateOnly.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<command:syntaxItem>
+				<maml:name>Get-sthModuleScopeVariable</maml:name>
+				<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+					<maml:name>Module</maml:name>
+					<maml:Description>
+            <maml:para>Указывает имя модуля.</maml:para>
+            <maml:para>Это может быть как объект строки, так и объект System.Management.Automation.PSModuleInfo.
+Вы можете получить объект PSModuleInfo при помощи командлета Get-Module.</maml:para>
+          </maml:Description>
+					<command:parameterValue required="true" variableLength="false">System.Object</command:parameterValue>
+					<dev:type>
+						<maml:name>System.Object</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue>None</dev:defaultValue>
+				</command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PublicOnly</maml:name>
+          <maml:Description>
+            <maml:para>Указывает, что должны быть получены только публичные переменные.</maml:para>
+            <maml:para>По умолчанию, Get-sthModuleScopeVariable возвращает все переменные - как публичные, так и частные.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+			</command:syntaxItem>
+			<command:syntaxItem>
+        <maml:name>Get-sthModuleScopeVariable</maml:name>
+				<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+					<maml:name>Module</maml:name>
+					<maml:Description>
+            <maml:para>Указывает имя модуля.</maml:para>
+            <maml:para>Это может быть как объект строки, так и объект System.Management.Automation.PSModuleInfo.
+Вы можете получить объект PSModuleInfo при помощи командлета Get-Module.</maml:para>
+          </maml:Description>
+					<command:parameterValue required="true" variableLength="false">System.Object</command:parameterValue>
+					<dev:type>
+						<maml:name>System.Object</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue>None</dev:defaultValue>
+				</command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PrivateOnly</maml:name>
+          <maml:Description>
+            <maml:para>Указывает, что должны быть получены только частные переменные.</maml:para>
+            <maml:para>По умолчанию, Get-sthModuleScopeVariable возвращает все переменные - как публичные, так и частные.</maml:para>
+					</maml:Description>
+					<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+					<dev:type>
+						<maml:name>SwitchParameter</maml:name>
+						<maml:uri />
+					</dev:type>
+					<dev:defaultValue>False</dev:defaultValue>
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Module</maml:name>
+        <maml:Description>
+					<maml:para>Указывает имя модуля.</maml:para>
+					<maml:para>Это может быть как объект строки, так и объект System.Management.Automation.PSModuleInfo.
+Вы можете получить объект PSModuleInfo при помощи командлета Get-Module.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">System.Object</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PublicOnly</maml:name>
+        <maml:Description>
+					<maml:para>Указывает, что должны быть получены только публичные переменные.</maml:para>
+					<maml:para>По умолчанию, Get-sthModuleScopeVariable возвращает все переменные - как публичные, так и частные.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PrivateOnly</maml:name>
+        <maml:Description>
+					<maml:para>Указывает, что должны быть получены только частные переменные.</maml:para>
+					<maml:para>По умолчанию, Get-sthModuleScopeVariable возвращает все переменные - как публичные, так и частные.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+		</command:parameters>
+		<command:examples>
+			<command:example>
+				<maml:title>Пример 1: Вход в область модуля и получение всех его переменных - публичных и частных</maml:title>
+				<dev:code>PS C:\> Enter-sthModuleScope -Module module_name
+[module_name] PS C:\>> Get-sthModuleScopeVariable</dev:code>
+				<dev:remarks>
+					<maml:para>Эти команды получают все переменные, определенные в модуле 'module_name'.
+Первая команда входит в область модуля с именем 'module_name'.
+Вторая команда получает все переменные модуля.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 2: Вход в область модуля и получение всех его публичных переменных</maml:title>
+				<dev:code>PS C:\> Enter-sthModuleScope -Module module_name
+[module_name] PS C:\>> Get-sthModuleScopeVariable -PublicOnly</dev:code>
+				<dev:remarks>
+					<maml:para>Эти команды получают все публичные переменные, определенные в модуле 'module_name'.
+Первая команда входит в область модуля с именем 'module_name'.
+Вторая команда получает все публичные переменные модуля.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 3: Вход в область модуля и получение всех его частных переменных</maml:title>
+				<dev:code>PS C:\> Enter-sthModuleScope -Module module_name
+[module_name] PS C:\>> Get-sthModuleScopeVariable -PrivateOnly</dev:code>
+				<dev:remarks>
+					<maml:para>Эти команды получают все частные переменные, определенные в модуле 'module_name'.
+Первая команда входит в область модуля с именем 'module_name'.
+Вторая команда получает все частные переменные модуля.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 4: Получение всех переменных модуля с использованием параметра -Module</maml:title>
+				<dev:code>PS C:\> Get-sthModuleScopeVariable -Module 'module_name'</dev:code>
+				<dev:remarks>
+					<maml:para>Команда получает все переменные, определенные в модуле 'module_name'.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 5: Получение всех переменных модуля с использованием параметра -Module и объекта PSModuleInfo</maml:title>
+				<dev:code>PS C:\> $Module = Get-Module -Name 'module_info' -ListAvailable
+PS C:\> Get-sthModuleScopeVariable -Module $Module</dev:code>
+				<dev:remarks>
+					<maml:para>Команда получает все переменные, определенные в модуле 'module_name', используя объект PSModuleInfo в качестве значения параметра -Module.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 6: Получение всех переменных модуля с использованием конвейера</maml:title>
+				<dev:code>PS C:\> 'module_name' | Get-sthModuleScopeVariable</dev:code>
+				<dev:remarks>
+					<maml:para>Команда выводит все переменные, определенные в модуле, получая его имя посредством конвейера.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 7: Получение всех функций модуля с использованием объекта PSModuleInfo и конвейера</maml:title>
+				<dev:code>PS C:\> Get-Module -Name 'module_name' -ListAvailable | Get-sthModuleScopeVariable</dev:code>
+				<dev:remarks>
+					<maml:para>Команда выводит все переменные, определенные в модуле, получая объект PSModuleInfo посредством конвейера.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<command:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>Enter-sthModuleScope</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthModuleScopeFunction</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthScopeDepth</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+		</command:relatedLinks>
+	</command:command>
+	<command:command 
+		xmlns:maml="http://schemas.microsoft.com/maml/2004/10" 
+		xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" 
+		xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" 
+		xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+		<command:details>
+			<command:name>Get-sthScopeDepth</command:name>
+			<command:verb>Get</command:verb>
+			<command:noun>sthScopeDepth</command:noun>
+			<maml:description>
+				<maml:para>Функция выводит расположение текущей области относительно глобальной.</maml:para>
+			</maml:description>
+		</command:details>
+		<maml:description>
+			<maml:para>Функция Get-sthScopeDepth выводит расположение текущей области относительно глобальной.
+Значение 0 говорит о том, что вы в данный момент находитесь в глобальной области,
+значение 1 - о том, что текущая область расположена непосредственно под глобальной,
+значение 2 - о том, что между текущей областью и глобальной расположена еще одна и так далее.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<command:syntaxItem>
+				<maml:name>Get-sthScopeDepth</maml:name>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+		</command:parameters>
+		<command:examples>
+			<command:example>
+				<maml:title>Пример 1: Получение расположения текущей области</maml:title>
+				<dev:code>PS C:\> Get-sthScopeDepth
+0</dev:code>
+				<dev:remarks>
+					<maml:para>Эта команда выводит расположение текущей области.
+Результат 0 означает, что в данный момент вы находитесь в глобальной области.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 2: Получение расположения текущей области из области модуля</maml:title>
+				<dev:code>PS C:\> Enter-sthModuleScope -Module module_name
+[module_name] PS C:\>> Get-sthScopeDepth
+1</dev:code>
+				<dev:remarks>
+					<maml:para>Команда Get-sthScopeDepth получает расположение текущей области, будучи вызванной из области модуля.
+Первая команда входит в область модуля с именем 'module_name'.
+Вторая команда получает расположение текущей области.
+Результат 1 означает, что вы находитесь на одну область ниже глобальной.</maml:para>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>Пример 3: Получение расположения текущей области при отладке функции</maml:title>
+				<dev:code>PS C:\> Set-PSDebug -Step
+PS C:\> Get-sthModuleScopeFunction -Module sthModuleScope
+
+Continue with this operation?
+   1+  >>>> Get-sthModuleScopeFunction -Module sthModuleScope
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): Y
+
+Continue with this operation?
+  26+  >>>> {
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): S
+
+PS C:\>> Get-sthScopeDepth
+2</dev:code>
+				<dev:remarks>
+					<maml:para>Эти команды получают расположение текущей области при отладке функции.
+Первая команда активирует отладку сценариев.
+Вторая команда вызывает функцию Get-sthModuleScopeFunction с указанием 'sthModuleScope' в качестве значения параметра -Module.
+Далее, на первый запрос отладчика указывается 'Y', что ведет к продолжению выполнения функции.
+На второй запрос отладичка указывается 'S', что приводит к приостановке выполнения.
+Затем, в командной строке отладчика вызывается функция Get-sthScopeDepth.
+Результат 2 означает, что вы находитесь на две области ниже глобальной.</maml:para>
+          <maml:para/>
+          <maml:para/>
+          <maml:para/>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<command:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>Enter-sthModuleScope</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthModuleScopeFunction</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-sthModuleScopeVariable</maml:linkText>
+				<maml:uri></maml:uri>
+			</maml:navigationLink>
+		</command:relatedLinks>
+	</command:command>
+</helpItems>

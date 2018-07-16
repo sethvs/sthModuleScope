@@ -1,9 +1,10 @@
 using namespace System.Management.Automation
 
+# .externalhelp sthModuleScope.help.ps1xml
 function Enter-sthModuleScope
 {
     Param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory,ValueFromPipeline)]
         $Module
     )
 
@@ -20,6 +21,7 @@ function Enter-sthModuleScope
     }
 }
 
+# .externalhelp sthModuleScope.help.ps1xml
 function Get-sthModuleScopeFunction
 {
     [CmdletBinding(DefaultParameterSetName='default')]
@@ -28,7 +30,7 @@ function Get-sthModuleScopeFunction
         [switch]$PublicOnly,
         [Parameter(ParameterSetName='PrivateOnly')]
         [switch]$PrivateOnly,
-        [Parameter(Position=0)]
+        [Parameter(Position=0,ValueFromPipeline)]
         $Module
     )
 
@@ -41,7 +43,7 @@ function Get-sthModuleScopeFunction
     if ($Script:ModuleName -or $Local:ModuleName)
     {
         $ScriptBlock = {
-            Get-ChildItem -Path function: | 
+            Get-ChildItem -Path function: |
             Where-Object -FilterScript {$_.Source -eq $ExecutionContext.SessionState.Module.Name}
         }
 
@@ -73,6 +75,7 @@ function Get-sthModuleScopeFunction
     }
 }
 
+# .externalhelp sthModuleScope.help.ps1xml
 function Get-sthModuleScopeVariable
 {
     [CmdletBinding(DefaultParameterSetName='default')]
@@ -81,7 +84,7 @@ function Get-sthModuleScopeVariable
         [switch]$PublicOnly,
         [Parameter(ParameterSetName='PrivateOnly')]
         [switch]$PrivateOnly,
-        [Parameter(Position=0)]
+        [Parameter(Position=0,ValueFromPipeline)]
         $Module
     )
 
@@ -90,18 +93,18 @@ function Get-sthModuleScopeVariable
         $Module = Get-Module -Name $Module -ListAvailable
         $Local:ModuleName = $Module.Name
     }
-    
+
     if ($Script:ModuleName -or $Local:ModuleName)
     {
         $ScriptBlock = {
             Get-Variable -Scope Script | Where-Object -FilterScript {$_.GetType().Name -eq 'PSVariable' -and $_.Name -notin @('true','false','error','PSCommandPath','PSScriptRoot','PSDefaultParameterValues','CurrentlyExecutingCommand')}
         }
-        
+
         inSetSessionState -ScriptBlock $ScriptBlock
 
         $result = . $ScriptBlock
     }
-    
+
     if ($result)
     {
         if ($PSCmdlet.ParameterSetName -eq 'default')
@@ -142,11 +145,12 @@ function inSetSessionState
     [scriptblock].GetProperty('SessionStateInternal', $flags).SetValue($ScriptBlock, $SessionStateInternal, $null)
 }
 
+# .externalhelp sthModuleScope.help.ps1xml
 function Get-sthScopeDepth
 {
     [CmdletBinding()]
     Param()
-    
+
     $inc = 2
     $ScriptBlock = {
         Param($inc)
