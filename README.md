@@ -1,6 +1,6 @@
 # sthModuleScope
 
-**sthModuleScope** - it is a module containing four functions for working elements module's scope.
+**sthModuleScope** - it is a module containing four functions for working with elements in module's scope.
 
 It contains following functions:
 
